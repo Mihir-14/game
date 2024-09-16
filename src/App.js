@@ -20,6 +20,9 @@ function App() {
       }
     });
   }
+  const addMoney = (amount) => {
+    setMoney(prevMoney => prevMoney + amount);
+  }
 
   const shouldShowNav = !['/game1', '/game2'].includes(location.pathname);
 
@@ -44,7 +47,7 @@ function App() {
             )}
             <Routes>
               <Route path="/game1" element={<Game1 deductMoney={() => deductMoney(10)} />} />
-              <Route path='/game2' element={<Game2 deductMoney={() => deductMoney(10)} />} />
+              <Route path='/game2' element={<Game2 deductMoney={() => deductMoney(10)} addMoney={addMoney} />} />
             </Routes>
             <button className="btn btn-danger mt-3" onClick={() => logout({ returnTo: window.location.origin })}>
               Logout
