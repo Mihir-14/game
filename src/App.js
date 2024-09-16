@@ -32,7 +32,7 @@ function App() {
         {isAuthenticated ? (
           <>
             <h1 className="text-primary mb-2">Hello {user.name}</h1>
-            <p className="lead">Cash in Hand: <span className="badge bg-success">${money}</span></p>
+            <p className="lead">Cash in Hand: <span className="badge bg-success">₹{money}</span></p>
             {shouldShowNav && (
               <nav>
                 <ul className="nav nav-pills mb-3">
