@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Game1 from './components/game1/Game1';
 import Game2 from './components/game2/Game2';
@@ -12,13 +11,7 @@ function App() {
   const location = useLocation();
 
   const deductMoney = (amount) => {
-    setMoney(prevMoney => {
-      if (prevMoney >= amount) {
-        return prevMoney - amount;
-      } else {
-        return prevMoney;
-      }
-    });
+    setMoney(prevMoney => (prevMoney >= amount ? prevMoney - amount : prevMoney));
   }
   const addMoney = (amount) => {
     setMoney(prevMoney => prevMoney + amount);
@@ -27,7 +20,7 @@ function App() {
   const shouldShowNav = !['/game1', '/game2'].includes(location.pathname);
 
   return (
-    <div className="container d-flex flex-column align-items-center min-vh-100 py-5">
+    <div className="container-fluid d-flex flex-column align-items-center min-vh-100 py-5 bg-dark text-light">
       <div className="text-center mb-4">
         {isAuthenticated ? (
           <>
@@ -35,12 +28,12 @@ function App() {
             <p className="lead">Cash in Hand: <span className="badge bg-success">₹{money}</span></p>
             {shouldShowNav && (
               <nav>
-                <ul className="nav nav-pills mb-3">
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/game1">Game 1</Link>
+                <ul className="nav nav-pills mb-3 justify-content-center">
+                  <li className="nav-item mx-2">
+                    <Link to="/game1" className="btn btn-primary btn-lg shadow-sm text-light">Game 1</Link>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/game2">Game 2</Link>
+                  <li className="nav-item mx-2">
+                    <Link to="/game2" className="btn btn-warning btn-lg shadow-sm text-dark">Game 2</Link>
                   </li>
                 </ul>
               </nav>
